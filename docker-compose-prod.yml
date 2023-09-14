@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  app:
+    build: 
+        context: .
+        target: production
+    environment:
+      - DEBG=0
+      - APP_ENV=production
+    command: >
+      sh -c "python manage.py migrate &&
+            gunicorn littlelemon.wsgi:application --bind 0.0.0.0:8000"

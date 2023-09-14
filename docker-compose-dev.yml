@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  app:
+    build: 
+      context: .
+      target: development
+    volumes:
+      - .:/code:ro 
+    environment:
+      - DEBG=1
+      - APP_ENV=development
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
