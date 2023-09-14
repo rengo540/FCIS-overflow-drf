@@ -10,4 +10,4 @@ services:
       - APP_ENV=production
     command: >
       sh -c "python manage.py migrate &&
-            gunicorn littlelemon.wsgi:application --bind 0.0.0.0:8000"
+            gunicorn FCISOverflow.wsgi:application --bind 0.0.0.0:8000"
