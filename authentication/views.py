@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from .utils import Util
-from .serializers import RegisterSerializer,UserSerializer
+from .serializers import LoginSerializer, RegisterSerializer,UserSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .models import User
@@ -28,9 +28,7 @@ class RegisterApiView(generics.CreateAPIView):
         
         #user_data = userr.data
         #user = User.objects.get(username=user_data['username'])
-        print(type(user))
         token = RefreshToken.for_user(user).access_token
-        print(token)
         absurl = 'http://'+get_current_site(request).domain+reverse('auth:email-verify')+'?token='+str(token)
         email_body = 'Hi '+ user.username + \
             ' Use the link below to verify your email \n' + absurl
@@ -42,14 +40,13 @@ class RegisterApiView(generics.CreateAPIView):
         return Response({
             "user": UserSerializer(user,context=self.get_serializer_context()).data,
             "message": "User Created Successfully.  Now perform Login to get your token",
-        })
+        },status=status.HTTP_201_CREATED)
 
 
 class VerifyEmail(generics.RetrieveAPIView):
     
     def retrieve(self, request, *args, **kwargs):
         token = request.GET.get('token')
-        print(token)
         try:
             payload = jwt.decode(token, settings.SECRET_KEY,algorithms=['HS256'])
             print(payload)
@@ -63,3 +60,14 @@ class VerifyEmail(generics.RetrieveAPIView):
         except jwt.exceptions.DecodeError as identifier:
             return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+class Login(generics.CreateAPIView):
+    serializer_class = LoginSerializer
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user_tokens=serializer.save()
+        
+        return Response(user_tokens,status=status.HTTP_200_OK)
