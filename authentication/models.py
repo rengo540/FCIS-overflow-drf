@@ -50,7 +50,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     major = models.CharField(max_length=100, blank=True,null=True)
     no_of_reports = models.IntegerField(default=0)
 
-    REQUIRED_FIELDS = ['email','college_id']
+    REQUIRED_FIELDS = ['email']
     USERNAME_FIELD = 'username'
     objects = UserManager()
     
