@@ -12,6 +12,7 @@ from django.urls import reverse
 import jwt
 from django.conf import settings
 from rest_framework import status
+from rest_framework.throttling import AnonRateThrottle,UserRateThrottle
 # Create your views here.
 
 
@@ -19,7 +20,7 @@ from rest_framework import status
 class RegisterApiView(generics.CreateAPIView):
     permission_classes=[AllowAny]
     serializer_class=RegisterSerializer
-    
+    throttle_classes=[AnonRateThrottle]
     def create(self, request, *args,  **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -64,6 +65,7 @@ class VerifyEmail(generics.RetrieveAPIView):
 
 class Login(generics.CreateAPIView):
     serializer_class = LoginSerializer
+    throttle_classes=[AnonRateThrottle,]
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

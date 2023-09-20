@@ -31,7 +31,7 @@ class Course(models.Model):
 
 
 class Question(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='users')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='questions')
     course = models.ForeignKey(Course,on_delete=models.SET_NULL,null=True,blank=True,related_name='courses')
     level = models.ForeignKey(Level,on_delete=models.SET_NULL,null=True,blank=True,related_name='levels')
     
@@ -77,8 +77,8 @@ class UploadedFile(models.Model):
 
 
 class Answer(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    question = models.ForeignKey(Question,on_delete=models.CASCADE,blank=False,null=False)
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,related_name='answers')
+    question = models.ForeignKey(Question,on_delete=models.CASCADE,blank=False,null=False,related_name='answrs')
     
     content = models.TextField(blank=False)
     timestamp = models.DateTimeField(auto_now_add=True)
