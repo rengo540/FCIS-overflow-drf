@@ -71,6 +71,7 @@ class AnswersApi(generics.ListCreateAPIView):
     serializer_class=AnswerSerializer
     ordering_fields=['voteUp','vouteDown','timestamp']
     permission_classes=[IsAuthenticated]
+    pagination_class=[]
 
     def get_queryset(self):
         question = Question.objects.get(slug=self.kwargs['slug'])
@@ -79,15 +80,7 @@ class AnswersApi(generics.ListCreateAPIView):
         return {'request':self.request,
                 'kwargs':self.kwargs}
         
-    # def get_permissions(self):
-    #     if self.action=='list' or self.action=="create":
-    #         permission_classes=[IsAuthenticated]
-    #     elif self.action=='update' or self.action=='retrieve':
-    #         permission_classes=[IsAuthenticated,UserWhoRequestCanPost]
-    #     elif self.action=='partial_updata':
-    #         permission_classes=[IsAuthenticated,OwnerNotAllowed]
-            
-    #     return permission_classes
+    
 
 class AnswersDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=AnswerSerializer
