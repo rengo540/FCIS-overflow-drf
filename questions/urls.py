@@ -15,6 +15,7 @@ urlpatterns = [
     path('answers/<int:pk>',views.AnswersDetails.as_view(),name='answer-details'),
     path('answers/<int:pk>/vote-up',views.AnswersVoteUp.as_view(),name='answer-voteup'),
     path('answers/<int:pk>/vote-down',views.AnswersVoteDown.as_view(),name='answer-votedown'),
+    
 ]
 
 urlpatterns += router.urls

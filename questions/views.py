@@ -10,7 +10,7 @@ from .permissions import UserWhoRequestCanPost ,AdminOnlyCanPost,OwnerNotAllowed
 from authentication.models import User
 from .serializers import  AnswerSerializer, AnswerVoteSerilaizer, CourseSerializer, LevelSerializer, QuestionSerializer
 from django_filters.rest_framework import DjangoFilterBackend,filters
-from .models import  Answer, Course, Level, Question
+from .models import  Answer, Course, Level, Question, UploadedFile
 from rest_framework import status
 # Create your views here.
 
@@ -25,6 +25,14 @@ class QuestionViewSet(viewsets.ModelViewSet):
     ordering_fields=['voteUp','vouteDown','timestamp']
     search_fields=['title','content']
     
+    # def create(self, request, *args, **kwargs):
+    #     data= super().create(request, *args, **kwargs)
+    #     file = request.FILES.get('upload_files')
+    #     question = Question.objects.get(slug=data.data['slug'])
+    #     print('question type :'+str(type(question)))
+    #     UploadedFile.objects.create(attached_file=file,question=question)
+
+    #     return data
     @action(detail=True,methods=['POST']
             ,permission_classes=[IsAuthenticated,OwnerNotAllowed]
             ,name='vote-up')
@@ -56,7 +64,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     #         ,permission_classes=[IsAuthenticated]
     #         ,name='answers'
     #         )
-    # def answers(self,request,slug=None):
+    #def answers(self,request,slug=None):
     #     if request.method =='GET':
     #         answers_list = Answer.objects.filter(question__slug=slug)
     #         serilaizer = AnswerSerializer(answers_list,many=True)
@@ -71,7 +79,7 @@ class AnswersApi(generics.ListCreateAPIView):
     serializer_class=AnswerSerializer
     ordering_fields=['voteUp','vouteDown','timestamp']
     permission_classes=[IsAuthenticated]
-    pagination_class=[]
+    pagination_class=None
 
     def get_queryset(self):
         question = Question.objects.get(slug=self.kwargs['slug'])

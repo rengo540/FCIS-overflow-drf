@@ -6,7 +6,7 @@ services:
       context: .
       target: development
     volumes:
-      - .:/code:ro 
+      - .:/code:rw 
     environment:
       - DEBG=1
       - APP_ENV=development

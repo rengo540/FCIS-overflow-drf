@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Filter.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="body">
+  <div class="filter-button">
+    <button type="submit" class="fltr-btn" id="filterButton">Filter</button>
+  </div>
+  <div class="filter-container">
+      <div class="filterMenu">
+      <span>
+        <h2>Filter by</h2> 
+        <label class="container">
+          <input type="checkbox" name="radio" value="No answers">No answers</input>
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          <input type="checkbox" name="radio" value="answered">answered</input>
+          <span class="checkmark"></span>
+        </label>
+        <select name="levels" id="lvls">
+          <option value="lvl1">Level 1</option>
+          <option value="lvl2">Level 2</option>
+          <option value="lvl3">Level 3</option>
+          <option value="lvl4">Level 4</option>
+      </select>      
+      </span>
+      <span>
+        <h2>Sorted by</h2>
+        <label class="container">
+          <input type="radio" name="filterType" value="Newest" checked>Newest</input>
+        </label>
+        <label class="container">
+          <input type="radio" name="filterType" value="Oldest">Oldest</input>
+        </label>
+      </span>
+      <span>
+        <h2>Filter by course name</h2>
+        <input type="search" id="courseNameInput" placeholder="Course Name">
+      </span>
+      <footer style="margin-top: auto;"> <button type="submit" style="align-self: flex-end;">Apply</button></footer>
+    </div>
+    </div>   
+  </div> 
+</body>
+<script src="filter.js"></script>
+</html>

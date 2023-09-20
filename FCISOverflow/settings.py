@@ -138,6 +138,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+#media folder
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL= '/media/'
+
+
+
+
+
 AUTH_USER_MODEL = 'authentication.User'
 
 
@@ -171,6 +180,7 @@ REST_FRAMEWORK = {
         'anon':'20/hour',
         #'user':'2/hour'
     },
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
     
@@ -180,8 +190,8 @@ REST_FRAMEWORK = {
 import datetime
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
 }
 
 

@@ -62,7 +62,7 @@ class Question(models.Model):
 
 
 class UploadedFile(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE,related_name='files')
     attached_file = models.FileField( upload_to='questions/')
 
     def save(self, *args, **kwargs):
