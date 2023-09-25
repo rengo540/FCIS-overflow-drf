@@ -34,6 +34,10 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    
+    'daphne',
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     #apps
     'authentication',
     'questions',
+    'group_chat'
 ]
 
 MIDDLEWARE = [
@@ -78,10 +83,16 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'FCISOverflow.wsgi.application'
-
-
+ASGI_APPLICATION = "FCISOverflow.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": ['redis://:eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81@cache:6379'],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

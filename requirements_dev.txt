@@ -14,3 +14,8 @@ django-filter==23.2
 pyyaml
 uritemplate
 coreapi
+async-timeout==4.0.3
+certifi==2023.7.22
+channels==4.0.0
+channels-redis==4.1.0
+daphne
