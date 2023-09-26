@@ -4,7 +4,8 @@ from django.contrib.auth.models import (
 
 from django.db import models
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class UserManager(BaseUserManager):
     
@@ -62,3 +63,9 @@ class User(AbstractBaseUser,PermissionsMixin):
             'refresh': str(refresh),
             'access': str(refresh.access_token)
         }
+        
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    if instance :
+        if instance.no_of_reports >=50 :
+            instance.is_active =False
