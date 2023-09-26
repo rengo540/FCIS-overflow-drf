@@ -18,6 +18,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes=[IsAuthenticated,IsAdminOfGroupToEdit]
     lookup_field='slug'
     lookup_url_kwarg='slug'
+    pagination_class=None
     def get_queryset(self):
         user = self.request.user
         queryset = Group.objects.filter(member=user)

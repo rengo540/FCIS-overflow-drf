@@ -28,6 +28,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(username, email, password)
         user.is_superuser = True
         user.is_staff = True
+        user.is_verified=True
         user.save()
         return user
         
@@ -49,7 +50,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     birthdate = models.DateField(blank=True,null=True)
     major = models.CharField(max_length=100, blank=True,null=True)
     no_of_reports = models.IntegerField(default=0)
-
+    profile_pic = models.ImageField(blank=True,null=True,upload_to='profile/')
+    
     REQUIRED_FIELDS = ['email']
     USERNAME_FIELD = 'username'
     objects = UserManager()

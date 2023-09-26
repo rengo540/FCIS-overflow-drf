@@ -132,10 +132,12 @@ class LevelViewSet(viewsets.ModelViewSet):
     permission_classes=(IsAuthenticated,AdminOnlyCanPost)
     lookup_field= 'name'
     lookup_url_kwarg= 'name'
-    
+    pagination_class=None
+
     
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset=Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes=(IsAuthenticated,AdminOnlyCanPost)
+    pagination_class=None

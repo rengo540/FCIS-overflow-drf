@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework import generics
 
 from .utils import Util
-from .serializers import LoginSerializer, RegisterSerializer,UserSerializer
+from .serializers import LoginSerializer, ProfileSerializer, RegisterSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .models import User
@@ -73,3 +73,13 @@ class Login(generics.CreateAPIView):
         user_tokens=serializer.save()
         
         return Response(user_tokens,status=status.HTTP_200_OK)
+    
+    
+class Profile(generics.RetrieveUpdateAPIView):
+    serializer_class=ProfileSerializer
+    permission_classes=[]
+    
+    def get_object(self):
+        obj=get_object_or_404(User,username=self.request.user)
+        self.check_object_permissions(self.request, obj)
+        return obj

@@ -1,4 +1,4 @@
-from .views import RegisterApiView,VerifyEmail,Login
+from .views import RegisterApiView,VerifyEmail,Login,Profile
 from django.urls import path
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -7,6 +7,7 @@ from rest_framework_simplejwt.views import (
 
 app_name = 'authentication'
 urlpatterns = [
+    path('my-profile',Profile.as_view(),name='my-profile'),
     path('register',RegisterApiView.as_view(),name='register'),
     path('email-verify/', VerifyEmail.as_view(), name="email-verify"),
     path('login',Login.as_view(),name='login'),

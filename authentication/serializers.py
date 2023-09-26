@@ -30,12 +30,13 @@ class RegisterSerializer(serializers.ModelSerializer):
                                         password=validated_data['password'])
 
 # User serializer
-class UserSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','password']
-        
-        
+        fields = ['username','email','created_at','section','birthdate','major','profile_pic']
+        read_only_fields =['username','email','created_at']
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)
         
         
 class LoginSerializer(serializers.Serializer):
