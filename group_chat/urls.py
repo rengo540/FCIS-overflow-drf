@@ -9,8 +9,8 @@ route.register(r'groups',views.GroupViewSet,basename='group')
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("<str:room_name>/", views.room, name="room"),
+    path("", views.room, name="room"),
+    
 ]
 
 urlpatterns += route.urls

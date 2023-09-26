@@ -49,9 +49,11 @@ class GroupViewSet(viewsets.ModelViewSet):
         return response.Response({},status=status.HTTP_200_OK)
 
 
-def index(request):
-    return render(request, "index.html")
 
-
-def room(request, room_name):
-    return render(request, "room.html", {"room_name": room_name})
+def room(request):
+    token = request.GET.get('token','')
+    user_groups = Group.objects.filter(member=request.user)
+    serilaizer = GroupSerilaizer(user_groups,many=True)
+    
+    return render(request, "room.html", {'token':token,
+                                         'user_groups':serilaizer.data})
