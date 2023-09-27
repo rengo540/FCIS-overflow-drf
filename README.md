@@ -14,7 +14,6 @@
 - [Installation & Setup](#-installation--setup)
 - [API Documentation](#-api-documentation)
 - [WebSocket Group Chat](#-websocket-group-chat)
-- [License](#-license)
 
 ## 🌐 Overview
 The FCIS Overflow API is designed to replicate the core functionalities of Stack Overflow. It provides a robust backend for a platform where users can ask questions, post answers, and engage in discussions related to computer science courses. This project serves as a comprehensive guide for understanding how a Q&A platform operates and is an excellent resource for both beginners and experienced developers interested in Django and RESTful API development.
@@ -127,12 +126,6 @@ To use the WebSocket-based group chat feature, follow these steps:
 
     Once connected to a group, you can send and receive messages in real time. Messages can be plain text or structured data, depending on your application's requirements.
 
-
-
-
-
-## 📜 License
-Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
