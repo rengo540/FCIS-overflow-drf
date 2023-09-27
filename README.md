@@ -11,14 +11,9 @@
 - [Overview](#-overview)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
 - [Installation & Setup](#-installation--setup)
 - [API Documentation](#-api-documentation)
 - [WebSocket Group Chat](#-websocket-group-chat)
-- [Blocking User Accounts](#-blocking-user-accounts)
-- [Testing](#-testing)
-- [Docker Deployment](#-docker-deployment)
-- [Environment Variables](#-environment-variables)
 - [License](#-license)
 
 ## 🌐 Overview
@@ -97,8 +92,10 @@ The FCIS Overflow API is designed to replicate the core functionalities of Stack
 
 
 ## 📚 API Documentation
-[Document your API endpoints here, including request and response examples.]
-
+to see the api documentation, you could request this endpoint:
+    ```
+    http://localhost:3000/docs/
+    ```
 # 🗨️ WebSocket Group Chat
 
 The FCIS Overflow API includes a WebSocket-based group chat feature that enables real-time communication among users. This chat feature is perfect for collaborative discussions and instant updates within groups.
@@ -118,6 +115,9 @@ To use the WebSocket-based group chat feature, follow these steps:
 2. **Authentication**
 
     WebSocket connections can be authenticated using either session authentication or JWT authentication, depending on your setup. Ensure that you include the necessary authentication tokens in the connection request headers.
+      ```
+    ws://your-api-domain/chat/?token=access-token
+    ```
     this made by middleware authentication
 3. **Join a Group**
 
@@ -127,57 +127,9 @@ To use the WebSocket-based group chat feature, follow these steps:
 
     Once connected to a group, you can send and receive messages in real time. Messages can be plain text or structured data, depending on your application's requirements.
 
-5. **Real-Time Updates**
 
-    As new messages are sent by participants in the group chat, your WebSocket connection will receive real-time updates. You can update the chat interface to display new messages as they arrive.
 
-## 🌟 Capabilities
 
-The WebSocket-based group chat offers several capabilities:
-
-- **Real-Time Messaging**: Messages are delivered instantly to all participants in the group.
-
-- **Typing Indicators**: You can implement typing indicators to show when users are actively typing.
-
-- **Message History**: Retrieve chat history for a group to display previous messages.
-
-- **Notifications**: Implement notifications to alert users to new messages, even when the chat window is not in focus.
-
-- **Group Management**: Allow users to create, join, and leave chat groups as needed.
-
-- **User Presence**: Show online/offline status of group members.
-
-By leveraging these capabilities, you can create a dynamic and engaging chat experience within your application.
-
-## 📚 Examples
-
-Here are some examples of how you can integrate the WebSocket-based group chat feature into your application:
-
-- **Real-Time Collaboration**: Enable users to collaborate on projects, documents, or discussions in real time.
-
-- **Community Discussions**: Create chat rooms for different topics or interest groups within your application.
-
-- **Support Chat**: Offer real-time customer support through chat channels.
-
-- **Event Updates**: Keep participants informed about event updates, such as agenda changes or announcements.
-
-Feel free to customize and expand upon these examples to fit your specific application's needs.
-
-This WebSocket-based group chat feature enhances user engagement and interaction within your application, providing a richer and more dynamic experience.
-
-    
-
-## 🔒 Blocking User Accounts
-[Detail the user account blocking mechanism and admin intervention.]
-
-## 🧪 Testing
-[Provide information on running API tests and ensuring feature reliability.]
-
-## 🐳 Docker Deployment
-[Explain how to deploy the project using Docker for production.]
-
-## 🌐 Environment Variables
-[List and describe the essential environment variables required for the project.]
 
 ## 📜 License
 Distributed under the MIT License. See `LICENSE` for more information.
