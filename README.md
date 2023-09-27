@@ -134,7 +134,5 @@ To use the WebSocket-based group chat feature, follow these steps:
 ## 📜 License
 Distributed under the MIT License. See `LICENSE` for more information.
 
-______________________
 
-Feel free to add any additional information or sections as needed for your project's specific requirements. Good luck with your FCIS Overflow API project!
 
