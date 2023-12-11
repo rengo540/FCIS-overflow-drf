@@ -19,7 +19,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=rengo
-      - POSTGRES_PASSWORD=re147rengo369go
+      - POSTGRES_PASSWORD=
       - POSTGRES_DB=FCISOverflow
       - PGDATA=/var/lib/postgresql/data
 
